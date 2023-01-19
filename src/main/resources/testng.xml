@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Wikitest">
+    <test name="FirstPageTest">
+        <groups>
+            <define name="smoke"/>
+            <define name="all"/>
+        </groups>
+        <classes>
+            <class name="TestWiki"/>
+        </classes>
+    </test>
+</suite>

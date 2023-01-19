@@ -8,7 +8,6 @@ import org.testng.annotations.BeforeClass;
 public class BaseClass {
     public static WebDriver driver;
 
-
     @BeforeClass
     public static void createDriver() {
         driver = DriverConfig.create(BROWSERS.CHROMEINCOGNITO);

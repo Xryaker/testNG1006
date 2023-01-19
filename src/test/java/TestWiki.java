@@ -1,5 +1,6 @@
 import configuretions.BaseClass;
 import data.DataProvaders;
+import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -9,6 +10,7 @@ import util.MyRetry;
 import util.Namess;
 
 import java.util.ResourceBundle;
+
 import static org.testng.Assert.*;
 
 public class TestWiki extends BaseClass {
@@ -18,13 +20,22 @@ public class TestWiki extends BaseClass {
         driver.get("https://wikipedia.org/");
     }
 
+    @Story("nsjsjsjssj")
     @Test(description = "this test check title", groups = {"smoke", "regresions"}, priority = 2)
     public void test1() {
         System.out.println(driver.getTitle());
+        wikiatach();
         assertEquals(driver.getTitle(), "tt");
     }
 
-    @Test(dependsOnMethods = "test1", priority = 2)
+
+
+    public String wikiatach() {
+        return "HELOO";
+
+    }
+
+    @Test(priority = 2)
     public void test2() {
         System.out.println("test2");
     }
@@ -42,17 +53,18 @@ public class TestWiki extends BaseClass {
     }
 
     @Test(dataProviderClass = DataProvaders.class, dataProvider = "getdata")
-    public void test5(String name,String family,int age,int x) {
+    public void test5(String name, String family, int age, int x) {
         System.out.println(name);
     }
-    int i=0;
+
+    int i = 0;
 
     @Test(retryAnalyzer = MyRetry.class)
-    public void test6(){
+    public void test6() {
 
-        System.out.print(i+" ");
+        System.out.print(i + " ");
         System.out.println(Namess.name);
-        assertEquals(Namess.name,"Vasiliy");
+        assertEquals(Namess.name, "Vasiliy");
         i++;
     }
 

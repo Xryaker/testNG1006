@@ -1,6 +1,10 @@
 package configuretions;
 
 
+import net.lightbody.bmp.BrowserMobProxyServer;
+import net.lightbody.bmp.client.ClientUtil;
+import net.lightbody.bmp.proxy.CaptureType;
+import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -53,36 +57,35 @@ public class DriverConfig {
 
     private static void createChromeProxy() {
 
-//        BrowserMobProxyServer server = new BrowserMobProxyServer();
-//        server.enableHarCaptureTypes(CaptureType.REQUEST_CONTENT, CaptureType.RESPONSE_CONTENT);
-//
-//        server.setTrustAllServers(true);
-//        server.start();
-//        //
-//        BaseProxy.serverBase=server;
-//
-//
-//        Proxy seleniumProxy = ClientUtil.createSeleniumProxy(server);
-//        String hostIp = null;
-//        try {
-//            hostIp = Inet4Address.getLocalHost().getHostAddress();
-//        } catch (UnknownHostException e) {
-//            throw new RuntimeException(e);
-//        }
-//        seleniumProxy.setHttpProxy(hostIp + ":" + server.getPort());
-//        seleniumProxy.setSslProxy(hostIp + ":" + server.getPort());
-//
-//
-//        DesiredCapabilities capabilities = new DesiredCapabilities();
-//        capabilities.setCapability(CapabilityType.PROXY, seleniumProxy);
-//        capabilities.setAcceptInsecureCerts(true);
-//
-//
-//        ChromeOptions options = new ChromeOptions();
-//        options.merge(capabilities);
-//        driver = new ChromeDriver(options);
-//
+        BrowserMobProxyServer server = new BrowserMobProxyServer();
+        server.enableHarCaptureTypes(CaptureType.REQUEST_CONTENT, CaptureType.RESPONSE_CONTENT);
 
+        server.setTrustAllServers(true);
+        server.start();
+        //
+
+        BaseProxy.serverBase=server;
+
+
+        Proxy seleniumProxy = ClientUtil.createSeleniumProxy(server);
+        String hostIp = null;
+        try {
+            hostIp = Inet4Address.getLocalHost().getHostAddress();
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        }
+        seleniumProxy.setHttpProxy(hostIp + ":" + server.getPort());
+        seleniumProxy.setSslProxy(hostIp + ":" + server.getPort());
+
+
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability(CapabilityType.PROXY, seleniumProxy);
+        capabilities.setAcceptInsecureCerts(true);
+
+
+        ChromeOptions options = new ChromeOptions();
+        options.merge(capabilities);
+        driver = new ChromeDriver(options);
 
     }
 
