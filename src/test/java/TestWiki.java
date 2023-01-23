@@ -1,18 +1,20 @@
 import configuretions.BaseClass;
 import data.DataProvaders;
 import io.qameta.allure.*;
-import org.testng.Assert;
+import liseners.MyLisener;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.DataProvider;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import util.MyRetry;
 import util.Namess;
+import util.Screen;
 
 import java.util.ResourceBundle;
 
 import static org.testng.Assert.*;
 
+@Listeners(MyLisener.class)
 public class TestWiki extends BaseClass {
 
     @BeforeClass
@@ -20,27 +22,26 @@ public class TestWiki extends BaseClass {
         driver.get("https://wikipedia.org/");
     }
 
-    @Story("nsjsjsjssj")
-    @Test(description = "this test check title", groups = {"smoke", "regresions"}, priority = 2)
+    //    @Story("nsjsjsjssj")
+
+    @Test(groups = {"smoke", "regresions"})
     public void test1() {
-        System.out.println(driver.getTitle());
-        wikiatach();
-        assertEquals(driver.getTitle(), "tt");
-    }
-
-
-
-    public String wikiatach() {
-        return "HELOO";
+        Screen.takeScreen(driver, "pic");
 
     }
 
+    @Link(name = "allure", type = "mylink")
+    @Link("DqDyvyepXIA")
+    @TmsLink("https://www.youtube.com/watch?v=LcY9tUioeVI")
     @Test(priority = 2)
     public void test2() {
         System.out.println("test2");
+        Screen.getString();
     }
 
-    @Test(description = "*******", groups = {"smoke"}, dependsOnMethods = "test1", alwaysRun = true, priority = 1)
+    @Issue("DqDyvyepXIA")
+    @Description("This test print TEST3")
+    @Test(description = "test #3 create 230123", groups = {"smoke"}, dependsOnMethods = "test1", alwaysRun = true, priority = 1)
     public void test3() {
         System.out.println("test3");
     }
@@ -55,10 +56,12 @@ public class TestWiki extends BaseClass {
     @Test(dataProviderClass = DataProvaders.class, dataProvider = "getdata")
     public void test5(String name, String family, int age, int x) {
         System.out.println(name);
+        assertEquals(driver.getCurrentUrl(),"sss");
     }
 
     int i = 0;
 
+    @Issue("#_links")
     @Test(retryAnalyzer = MyRetry.class)
     public void test6() {
 

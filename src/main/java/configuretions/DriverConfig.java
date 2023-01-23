@@ -57,13 +57,13 @@ public class DriverConfig {
 
     private static void createChromeProxy() {
 
+
         BrowserMobProxyServer server = new BrowserMobProxyServer();
         server.enableHarCaptureTypes(CaptureType.REQUEST_CONTENT, CaptureType.RESPONSE_CONTENT);
 
         server.setTrustAllServers(true);
         server.start();
         //
-
         BaseProxy.serverBase=server;
 
 

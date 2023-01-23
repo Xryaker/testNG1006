@@ -1,6 +1,9 @@
 package configuretions;
 
 
+import configuretions.proxyconfig.ConfigUserAgens;
+import configuretions.proxyconfig.USERAGENT;
+import net.lightbody.bmp.BrowserMobProxyServer;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -10,17 +13,18 @@ public class BaseClass {
 
     @BeforeClass
     public static void createDriver() {
-        driver = DriverConfig.create(BROWSERS.CHROMEINCOGNITO);
+        driver = DriverConfig.create(BROWSERS.CHROMEWITHPROXY);
 
     }
 
     @AfterClass
     public static void after() {
         try {
-            Thread.sleep(10000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        driver.quit();
+        System.out.println(driver.getCurrentUrl());
+//        driver.quit();
     }
 }

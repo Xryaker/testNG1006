@@ -6,14 +6,17 @@ import net.lightbody.bmp.BrowserMobProxyServer;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
-public class BaseProxy extends BaseClass{
+public class BaseProxy extends BaseClass {
     public static BrowserMobProxyServer serverBase;
+
     @BeforeClass
-    public  void startP(){
-        ConfigUserAgens.createUserAgent(USERAGENT.ANDROIRU,serverBase);
+    public void beforC() {
+        ConfigUserAgens.createUserAgent(USERAGENT.ANDROIRU, serverBase);
     }
+
     @AfterClass
-    public void stopP(){
-    serverBase.stop();
+    public void stopP() {
+        serverBase.stop();
+        System.out.println("stooop");
     }
 }

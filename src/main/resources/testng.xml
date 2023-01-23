@@ -1,12 +1,14 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="Wikitest">
-    <test name="FirstPageTest">
+<suite name="Shevchenko Vasiliy">
+    <test name="19012023">
         <groups>
-            <define name="smoke"/>
-            <define name="all"/>
         </groups>
         <classes>
             <class name="TestWiki"/>
         </classes>
+
     </test>
+    <listeners>
+        <listener class-name="liseners.MyLisener"></listener>
+    </listeners>
 </suite>
